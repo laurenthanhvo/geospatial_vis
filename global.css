@@ -1,10 +1,83 @@
+:root {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+}
+
+* {
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+}
+
 body {
-  font: 100%/1.5 system-ui, sans-serif;
+    font: 100%/1.5 system-ui, sans-serif;
+    display: flex;
+    flex-flow: column;
+    max-width: 80em;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1em;
+}
+
+header.time-controls {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.time-filter {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.time-filter input[type="range"] {
+    -webkit-appearance: none;
+    width: 320px;     
+    height: 6px;
+    background: #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.time-filter input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: rgb(0, 140, 140);
+    cursor: pointer;
+}
+
+.time-filter time,
+.time-filter em {
+    display: block;
+    font-size: 0.9rem;
+    margin-left: auto;
+}
+
+.time-filter em {
+    color: grey;
+    font-style: italic;
+}
+
+header.time-controls h1 {
+  margin-bottom: 0rem; 
+}
+
+header.time-controls + p {
+  margin-top: 0rem;
+}
+
+header.time-controls {
   display: flex;
-  flex-flow: column;
-  max-width: 80em;
-  min-height: 100vh;
-  box-sizing: border-box;
-  margin: auto;
-  padding: 1em;
+  align-items: baseline;
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 0;  
 }

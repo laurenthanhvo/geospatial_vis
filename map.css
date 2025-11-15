@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   margin: 0;
   padding: 5;
@@ -7,11 +7,13 @@ body {
   display: flex;
   justify-content: center; 
   align-items: center; 
-}
+} 
+*/
 
 #map {
+  position: relative;           
   width: 100%;
-  height: 100%;
+  height: 70vh;              
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
@@ -25,25 +27,56 @@ body {
 }
 
 #map svg circle {
+  fill: steelblue;
+  fill-opacity: 0.5;
+  stroke: white;
+  stroke-width: 1px;
+  transition: r 0.2s ease;
   pointer-events: auto;
+
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+      in oklch,
+      var(--color-departures) calc(100% * var(--departure-ratio)),
+      var(--color-arrivals)
+  );
+  fill: var(--color);
 }
 
-header {
+#map svg circle:hover {
+  stroke: #ffffff;
+  stroke-width: 3px;
+}
+
+.legend {
   display: flex;
-  gap: 1em;
-  align-items: baseline;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-block: 1rem;
+  font-family: sans-serif;
 }
 
-header label#time-filter {
-  margin-left: auto;
+.legend-title {
+  font-weight: 600;
+  color: gray;
+  text-transform: uppercase;
 }
 
-header time,
-header em {
-  display: block;    /* put them on their own line */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
 }
 
-header em {
-  color: #777;       /* lighter color */
-  font-style: italic;
+.legend-item::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color);
+  flex-shrink: 0;
+  border: 1px solid #3332;
 }
