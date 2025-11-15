@@ -61,6 +61,7 @@ function filterTripsbyTime(trips, timeFilter) {
       });
 }
 
+
 function getCoords(station) {
   const point = new mapboxgl.LngLat(+station.lon, +station.lat);
   const { x, y } = map.project(point);
@@ -124,14 +125,10 @@ map.on('load', async () => {
     return;
   }
 
-  let trips = await d3.csv(
-  'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv',
-  (trip) => {
-    trip.started_at = new Date(trip.started_at);
-    trip.ended_at = new Date(trip.ended_at);
-    return trip;
-  },
-);
+  // Step 4.1: Importing and parsing the traffic data
+  const trips = await d3.csv(
+    'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv'
+  );
 
   // Step 4.2: Calculating traffic at each station
   const departures = d3.rollup(
