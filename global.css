@@ -68,10 +68,11 @@ header.time-controls {
 
 header.time-controls h1 {
   margin-bottom: 0rem; 
+  margin-top: 3rem; 
 }
 
 header.time-controls + p {
-  margin-top: 0rem;
+  margin-top: 1rem;
 }
 
 header.time-controls {
